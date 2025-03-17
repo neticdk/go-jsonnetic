@@ -2,8 +2,10 @@ package utils
 
 import (
 	"fmt"
+	"maps"
 	"os"
 	"path/filepath"
+	"slices"
 	"sort"
 
 	"github.com/neticdk/go-jsonnetic/pkg/jsonnetic/native"
@@ -23,16 +25,14 @@ func PrettyFuncList() string {
 	return funcList
 }
 
+// WriteMultiOutputFiles writes the output to multiple files and if enabled creates directories.
 func WriteMultiOutputFiles(output map[string]string, outputDir, outputFile string, createDirs bool) (err error) { //nolint:revive
 	// If multiple file output is used, then iterate over each string from
 	// the sequence of strings returned by jsonnet_evaluate_snippet_multi,
 	// construct pairs of filename and content, and write each output file.
 
-	var manifest *os.File
-
-	if outputFile == "" {
-		manifest = os.Stdout
-	} else {
+	manifest := os.Stdout
+	if outputFile != "" {
 		manifest, err = os.Create(outputFile)
 		if err != nil {
 			return err
@@ -44,17 +44,14 @@ func WriteMultiOutputFiles(output map[string]string, outputDir, outputFile strin
 		}()
 	}
 
-	// Iterate through the map in order.
-	keys := make([]string, 0, len(output))
-	for k := range output {
-		keys = append(keys, k)
-	}
+	// Create a sorted list of keys to ensure deterministic output.
+	keys := slices.Collect(maps.Keys(output))
 	sort.Strings(keys)
 	for _, key := range keys {
 		newContent := output[key]
 		filename := outputDir + key
 
-		_, err := manifest.WriteString(filename)
+		_, err = manifest.WriteString(filename)
 		if err != nil {
 			return err
 		}
@@ -77,7 +74,7 @@ func WriteMultiOutputFiles(output map[string]string, outputDir, outputFile strin
 			}
 		}
 		if createDirs {
-			if err := os.MkdirAll(filepath.Dir(filename), FileModeNewDirectory); err != nil {
+			if err = os.MkdirAll(filepath.Dir(filename), FileModeNewDirectory); err != nil {
 				return err
 			}
 		}
@@ -100,21 +97,11 @@ func WriteOutputFile(output string, outputFile string, createDirs bool) (err err
 	}
 
 	if createDirs {
-		if err := os.MkdirAll(filepath.Dir(outputFile), FileModeNewDirectory); err != nil {
+		if err = os.MkdirAll(filepath.Dir(outputFile), FileModeNewDirectory); err != nil {
 			return err
 		}
 	}
 
-	f, createErr := os.Create(outputFile)
-	if createErr != nil {
-		return createErr
-	}
-	defer func() {
-		if ferr := f.Close(); ferr != nil {
-			err = ferr
-		}
-	}()
-
-	_, err = f.WriteString(output)
+	err = os.WriteFile(outputFile, []byte(output), FileModeNewFile)
 	return err
 }

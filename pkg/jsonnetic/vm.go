@@ -5,6 +5,7 @@ import (
 	"github.com/neticdk/go-jsonnetic/pkg/jsonnetic/native"
 )
 
+// MakeVM returns a new jsonnet VM with the given jPath and maxStack and additional native functions
 func MakeVM(jPath []string, maxStack int) *jsonnet.VM {
 	vm := jsonnet.MakeVM()
 
