@@ -1,8 +1,9 @@
-<h3 align="center">
-<img src="assets/logo.png" height="512" width="640" alt="Logo"/><br/>
-<img src="assets/transparent.png" height="30" width="0px"/>
-</h3>
+<p align="center">
+    <img alt="jsonnetic logo" src="assets/logo.png" height="300" />
+    <h3 align="center">Jsonnetic a Jsonnet implementation</h3>
+</p>
 
+---
 # Jsonnetic
 
 CLI Tool based on [jsonnet](https://jsonnet.org), but with a few extra native functions.
