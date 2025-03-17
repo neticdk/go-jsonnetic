@@ -3,6 +3,7 @@ package cmd
 import (
 	"context"
 	"fmt"
+
 	"github.com/neticdk/go-common/pkg/cli/cmd"
 	clierrors "github.com/neticdk/go-common/pkg/cli/errors"
 	"github.com/neticdk/go-common/pkg/file"
@@ -26,7 +27,7 @@ func newRootCmd(ac *jsonneticcli.Context) *cobra.Command {
 		Build()
 
 	c.Args = cobra.MatchAll(cobra.ExactArgs(1), cobra.OnlyValidArgs)
-	c.RunE = func(cmd *cobra.Command, args []string) error {
+	c.RunE = func(cmd *cobra.Command, _ []string) error {
 		ctx := cmd.Context()
 		if err := o.Complete(ctx, ac); err != nil {
 			return err

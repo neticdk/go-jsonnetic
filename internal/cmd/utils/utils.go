@@ -2,10 +2,16 @@ package utils
 
 import (
 	"fmt"
-	"github.com/neticdk/go-jsonnetic/pkg/jsonnetic/native"
 	"os"
 	"path/filepath"
 	"sort"
+
+	"github.com/neticdk/go-jsonnetic/pkg/jsonnetic/native"
+)
+
+const (
+	FileModeNewDirectory = 0o750
+	FileModeNewFile      = 0o640
 )
 
 // PrettyFuncList returns a pretty list of all available functions.
@@ -17,7 +23,7 @@ func PrettyFuncList() string {
 	return funcList
 }
 
-func WriteMultiOutputFiles(output map[string]string, outputDir, outputFile string, createDirs bool) (err error) {
+func WriteMultiOutputFiles(output map[string]string, outputDir, outputFile string, createDirs bool) (err error) { //nolint:revive
 	// If multiple file output is used, then iterate over each string from
 	// the sequence of strings returned by jsonnet_evaluate_snippet_multi,
 	// construct pairs of filename and content, and write each output file.
@@ -71,12 +77,12 @@ func WriteMultiOutputFiles(output map[string]string, outputDir, outputFile strin
 			}
 		}
 		if createDirs {
-			if err := os.MkdirAll(filepath.Dir(filename), 0755); err != nil {
+			if err := os.MkdirAll(filepath.Dir(filename), FileModeNewDirectory); err != nil {
 				return err
 			}
 		}
 
-		err = os.WriteFile(filename, []byte(newContent), 0644)
+		err = os.WriteFile(filename, []byte(newContent), FileModeNewFile)
 		if err != nil {
 			return err
 		}
@@ -87,14 +93,14 @@ func WriteMultiOutputFiles(output map[string]string, outputDir, outputFile strin
 
 // WriteOutputFile writes the output to the given file, creating directories
 // if requested, and printing to stdout instead if the outputFile is "".
-func WriteOutputFile(output string, outputFile string, createDirs bool) (err error) {
+func WriteOutputFile(output string, outputFile string, createDirs bool) (err error) { //nolint:revive
 	if outputFile == "" {
 		fmt.Print(output)
 		return nil
 	}
 
 	if createDirs {
-		if err := os.MkdirAll(filepath.Dir(outputFile), 0755); err != nil {
+		if err := os.MkdirAll(filepath.Dir(outputFile), FileModeNewDirectory); err != nil {
 			return err
 		}
 	}

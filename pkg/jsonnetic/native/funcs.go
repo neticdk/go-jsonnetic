@@ -1,12 +1,14 @@
+//nolint:errcheck
 package native
 
 import (
+	"regexp"
+
 	"github.com/google/go-jsonnet"
 	"github.com/google/go-jsonnet/ast"
 	"github.com/neticdk/go-common/pkg/file"
 	"github.com/neticdk/go-jsonnetic/internal/utils"
 	"github.com/prometheus/prometheus/promql/parser"
-	"regexp"
 )
 
 const (
@@ -74,7 +76,6 @@ func promqlAggregateBy() *jsonnet.NativeFunction {
 			if err != nil {
 				return "", err
 			}
-
 			f := utils.ExprNodeInspectorFunc(args[1].(string))
 			parser.Inspect(expr, f)
 
