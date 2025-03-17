@@ -60,11 +60,11 @@ type rootOptions struct {
 }
 
 func (o *rootOptions) bindFlags(f *pflag.FlagSet, _ *jsonneticcli.Context) {
-	f.StringSliceVarP(&o.jpath, "jpath", "J", nil, "Specify an additional library search dir (right-most wins)")
-	f.IntVarP(&o.maxStack, "max-stack", "s", 0, "Specify the number of allowed stack frames, if not set, the default is used from the go-jsonnet implementation")
-	f.StringVarP(&o.outputFile, "output-file", "o", "", "output-file is the file to write the output to")
-	f.StringVarP(&o.outputMulti, "multi", "m", "", "output-multi is the directory to write the output to for multi-file output")
-	f.BoolVarP(&o.createDirs, "create-output-dirs", "c", false, "create-output-dirs is a flag to create the output directories if they do not exist")
+	f.StringSliceVarP(&o.jpath, "jpath", "J", nil, "Add a library search directory (rightmost takes precedence)")
+	f.IntVarP(&o.maxStack, "max-stack", "s", 0, "Set the maximum number of stack frames. Uses the go-jsonnet default if not specified")
+	f.StringVarP(&o.outputFile, "output-file", "o", "", "Write output to the specified file. Defaults to stdout")
+	f.StringVarP(&o.outputMulti, "multi", "m", "", "Write multi-file output to the specified directory.")
+	f.BoolVarP(&o.createDirs, "create-output-dirs", "c", false, "Create output directories if they do not exist.")
 }
 
 func (o *rootOptions) Complete(_ context.Context, ac *jsonneticcli.Context) error {
