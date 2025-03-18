@@ -3,7 +3,6 @@ name: CI
 
 on:
   pull_request:
-    types: [opened, reopened, synchronize, ready_for_review, review_requested]
     branches:
       - main
   push:
@@ -29,4 +28,4 @@ jobs:
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
       - uses: goreleaser/goreleaser-action@90a3faa9d0182683851fbfa97ca1a2cb983bfca3 # v6.2.1
         with:
-          args: release --snapshot --clean
+          args: release --snapshot --skip=publish --clean
