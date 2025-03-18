@@ -1,46 +1,32 @@
 ---
 name: CI
 
-# This is the deefault even from the go-project-template
-# Replace it with something like the one below
 on:
-    workflow_dispatch:
+  pull_request:
+    types: [opened, reopened, synchronize, ready_for_review, review_requested]
+    branches:
+      - main
+  push:
+    branches:
+      - main
 
-# on:
-#     push:
-#         branches:
-#             - main
-#     pull_request:
-#         branches:
-#             - main
+permissions:
+  contents: read
 
 jobs:
-    build:
-        runs-on: ubuntu-latest
+  test:
+    name: Build and Test
+    uses: neticdk/shared-github-actions/.github/workflows/go-ci.yml@main
+    with:
+      go-build-args: "-o bin/jsonnetic -v -tags release -ldflags '-s -w'"
+      run-benchmarks: true
 
-        steps:
-            - name: Checkout code
-              uses: actions/checkout@v4
-              with:
-                  fetch-depth: 0
-
-            - name: Set up Go
-              uses: actions/setup-go@v5
-              with:
-                  go-version-file: ./go.mod
-
-            - name: Install dependencies
-              run: |
-                  go mod download
-                  go mod verify
-
-            - name: golangci-lint
-              uses: golangci/golangci-lint-action@v6
-              with:
-                  version: latest
-
-            - name: Run tests
-              run: go test -race -cover -v ./...
-
-            - name: Run benchmarks
-              run: go test -bench=. ./...
+  goreleaser_snapshot:
+    name: Run GoReleaser dry-run
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+      - uses: goreleaser/goreleaser-action@90a3faa9d0182683851fbfa97ca1a2cb983bfca3 # v6.2.1
+        with:
+          args: release --snapshot --clean

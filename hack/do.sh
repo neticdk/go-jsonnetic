@@ -82,7 +82,7 @@ build() {
     clean
     fmt
     [ "${NOLINT}" -eq 0 ] && lint
-    eval go build -o bin/ "$DEFAULT_GO_OPTS" "$*"
+    eval go build -o bin/jsonnetic "$DEFAULT_GO_OPTS" "$*"
 }
 
 docker_build() {
