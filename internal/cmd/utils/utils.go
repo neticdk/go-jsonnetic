@@ -44,12 +44,12 @@ func WriteMultiOutputFiles(output map[string]string, outputDir, outputFile strin
 		}()
 	}
 
-	// Create a sorted list of keys to ensure deterministic output.
-	keys := slices.Collect(maps.Keys(output))
-	sort.Strings(keys)
-	for _, key := range keys {
-		newContent := output[key]
-		filename := outputDir + key
+	// Create a sorted list of outputPaths to ensure deterministic output.
+	outputPaths := slices.Collect(maps.Keys(output))
+	sort.Strings(outputPaths)
+	for _, path := range outputPaths {
+		newContent := output[path]
+		filename := filepath.Join(outputDir, path)
 
 		_, err = manifest.WriteString(filename)
 		if err != nil {

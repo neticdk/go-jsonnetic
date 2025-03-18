@@ -3,6 +3,7 @@ package cmd
 import (
 	"context"
 	"fmt"
+	"slices"
 
 	"github.com/neticdk/go-common/pkg/cli/cmd"
 	clierrors "github.com/neticdk/go-common/pkg/cli/errors"
@@ -54,7 +55,6 @@ type rootOptions struct {
 	outputFile string
 	// outputMulti is the directory to write the output to for multi-file output
 	outputMulti string
-	evalMulti   bool
 	// createDirs is a flag to create the output directories if they do not exist
 	createDirs bool
 }
@@ -72,9 +72,9 @@ func (o *rootOptions) Complete(_ context.Context, ac *jsonneticcli.Context) erro
 	o.filename = ac.EC.CommandArgs[0]
 
 	if o.outputMulti != "" {
-	if !slices.HasSuffix(o.outputMulti, "/") {
-		o.outputMulti += "/"
-	}
+		if !slices.HasSuffix(o.outputMulti, "/") {
+			o.outputMulti += "/"
+		}
 	}
 	return nil
 }
@@ -98,10 +98,6 @@ func (o *rootOptions) Validate(_ context.Context, _ *jsonneticcli.Context) error
 		}
 	}
 
-	if o.outputMulti != "" {
-		o.evalMulti = true
-	}
-
 	return nil
 }
 
@@ -113,7 +109,7 @@ func (o *rootOptions) Run(_ context.Context, _ *jsonneticcli.Context) error {
 	var output string
 	var outputDict map[string]string
 
-	if o.evalMulti {
+	if o.outputMulti != "" {
 		outputDict, err = vm.EvaluateFileMulti(o.filename)
 	} else {
 		output, err = vm.EvaluateFile(o.filename)
@@ -125,21 +121,14 @@ func (o *rootOptions) Run(_ context.Context, _ *jsonneticcli.Context) error {
 		}
 	}
 
-	// Write output JSON.
-	if o.evalMulti {
+	// Write the output to multi files or a single file
+	if o.outputMulti != "" {
 		err = utils.WriteMultiOutputFiles(outputDict, o.outputMulti, o.outputFile, o.createDirs)
-		if err != nil {
-			return &clierrors.GeneralError{
-				Err: err,
-			}
-		}
 	} else {
 		err = utils.WriteOutputFile(output, o.outputFile, o.createDirs)
-		if err != nil {
-			return &clierrors.GeneralError{
-				Err: err,
-			}
-		}
+	}
+	if err != nil {
+		return &clierrors.GeneralError{Err: err}
 	}
 
 	return nil
