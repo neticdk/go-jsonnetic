@@ -72,9 +72,9 @@ func (o *rootOptions) Complete(_ context.Context, ac *jsonneticcli.Context) erro
 	o.filename = ac.EC.CommandArgs[0]
 
 	if o.outputMulti != "" {
-		if o.outputMulti[len(o.outputMulti)-1] != '/' {
-			o.outputMulti += "/"
-		}
+	if !slices.HasSuffix(o.outputMulti, "/") {
+		o.outputMulti += "/"
+	}
 	}
 	return nil
 }
