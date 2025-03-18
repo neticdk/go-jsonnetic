@@ -4,7 +4,7 @@ go 1.24.0
 
 require (
 	github.com/google/go-jsonnet v0.20.0
-	github.com/neticdk/go-common v0.13.0
+	github.com/neticdk/go-common v0.12.0
 	github.com/prometheus/prometheus v0.302.1
 	github.com/spf13/cobra v1.9.1
 	github.com/spf13/pflag v1.0.6
@@ -70,7 +70,7 @@ require (
 	go.uber.org/atomic v1.11.0 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
 	golang.org/x/exp v0.0.0-20250215185904-eff6e970281f // indirect
-	golang.org/x/net v0.37.0 // indirect
+	golang.org/x/net v0.35.0 // indirect
 	golang.org/x/sys v0.31.0 // indirect
 	golang.org/x/term v0.30.0 // indirect
 	golang.org/x/text v0.23.0 // indirect
