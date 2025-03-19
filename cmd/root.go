@@ -59,6 +59,8 @@ type rootOptions struct {
 	outputMulti string
 	// createDirs is a flag to create the output directories if they do not exist
 	createDirs bool
+	// StringOutput is used to configure jsonnet VM to return string output
+	stringOutput bool
 }
 
 func (o *rootOptions) bindFlags(f *pflag.FlagSet, _ *jsonneticcli.Context) {
@@ -67,6 +69,8 @@ func (o *rootOptions) bindFlags(f *pflag.FlagSet, _ *jsonneticcli.Context) {
 	f.StringVarP(&o.outputFile, "output-file", "", "", "Write output to the specified file. Defaults to stdout")
 	f.StringVarP(&o.outputMulti, "multi", "m", "", "Write multi-file output to the specified directory.")
 	f.BoolVarP(&o.createDirs, "create-output-dirs", "c", false, "Create output directories if they do not exist.")
+	f.BoolVarP(&o.stringOutput, "string", "S", false, "Expect a string, manifest as plain text")
+
 }
 
 func (o *rootOptions) Complete(_ context.Context, ac *jsonneticcli.Context) error {
@@ -106,6 +110,9 @@ func (o *rootOptions) Validate(_ context.Context, _ *jsonneticcli.Context) error
 func (o *rootOptions) Run(_ context.Context, _ *jsonneticcli.Context) error {
 	// Get the jsonnet VM
 	vm := jsonnetic.MakeVM(o.jpath, o.maxStack)
+
+	// Set the string output flag
+	vm.StringOutput = o.stringOutput
 
 	var err error
 	var output string
