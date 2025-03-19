@@ -70,7 +70,6 @@ func (o *rootOptions) bindFlags(f *pflag.FlagSet, _ *jsonneticcli.Context) {
 	f.StringVarP(&o.outputMulti, "multi", "m", "", "Write multi-file output to the specified directory.")
 	f.BoolVarP(&o.createDirs, "create-output-dirs", "c", false, "Create output directories if they do not exist.")
 	f.BoolVarP(&o.stringOutput, "string", "S", false, "Expect a string, manifest as plain text")
-
 }
 
 func (o *rootOptions) Complete(_ context.Context, ac *jsonneticcli.Context) error {
