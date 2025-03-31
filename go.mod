@@ -1,10 +1,10 @@
 module github.com/neticdk/go-jsonnetic
 
-go 1.24.0
+go 1.24.1
 
 require (
 	github.com/google/go-jsonnet v0.20.0
-	github.com/neticdk/go-common v0.12.0
+	github.com/neticdk/go-common v0.15.0
 	github.com/prometheus/prometheus v0.302.1
 	github.com/spf13/cobra v1.9.1
 	github.com/spf13/pflag v1.0.6
@@ -21,7 +21,7 @@ require (
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/cespare/xxhash/v2 v2.3.0 // indirect
 	github.com/charmbracelet/colorprofile v0.2.3-0.20250311203215-f60798e515dc // indirect
-	github.com/charmbracelet/glamour v0.9.0 // indirect
+	github.com/charmbracelet/glamour v0.9.1 // indirect
 	github.com/charmbracelet/lipgloss v1.1.0 // indirect
 	github.com/charmbracelet/x/ansi v0.8.0 // indirect
 	github.com/charmbracelet/x/cellbuf v0.0.13-0.20250311204145-2c3ea96c31dd // indirect
@@ -60,7 +60,7 @@ require (
 	github.com/sagikazarmark/locafero v0.7.0 // indirect
 	github.com/sagikazarmark/slog-shim v0.1.0 // indirect
 	github.com/sourcegraph/conc v0.3.0 // indirect
-	github.com/spf13/afero v1.12.0 // indirect
+	github.com/spf13/afero v1.14.0 // indirect
 	github.com/spf13/cast v1.7.1 // indirect
 	github.com/spf13/viper v1.19.0 // indirect
 	github.com/subosito/gotenv v1.6.0 // indirect
@@ -70,7 +70,7 @@ require (
 	go.uber.org/atomic v1.11.0 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
 	golang.org/x/exp v0.0.0-20250215185904-eff6e970281f // indirect
-	golang.org/x/net v0.36.0 // indirect
+	golang.org/x/net v0.37.0 // indirect
 	golang.org/x/sys v0.31.0 // indirect
 	golang.org/x/term v0.30.0 // indirect
 	golang.org/x/text v0.23.0 // indirect
