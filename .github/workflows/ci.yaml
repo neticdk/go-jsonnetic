@@ -19,10 +19,10 @@ permissions:
 jobs:
   test:
     name: Build and Test
-    uses: neticdk/shared-github-actions/.github/workflows/go-ci.yml@main
+    uses: neticdk/shared-github-actions/.github/workflows/go-ci.yaml@main
     with:
-      go-build-args: "-o bin/jsonnetic -v -tags release -ldflags '-s -w'"
       run-benchmarks: true
+      run-release-test: true
 
   goreleaser_snapshot:
     name: Run GoReleaser dry-run

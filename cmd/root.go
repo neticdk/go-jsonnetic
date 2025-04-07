@@ -6,7 +6,6 @@ import (
 	"strings"
 
 	"github.com/neticdk/go-common/pkg/cli/cmd"
-	clierrors "github.com/neticdk/go-common/pkg/cli/errors"
 	"github.com/neticdk/go-common/pkg/file"
 	"github.com/neticdk/go-jsonnetic/internal/cmd/utils"
 	"github.com/neticdk/go-jsonnetic/internal/jsonneticcli"
@@ -87,7 +86,7 @@ func (o *rootOptions) Complete(_ context.Context, ac *jsonneticcli.Context) erro
 func (o *rootOptions) Validate(_ context.Context, _ *jsonneticcli.Context) error {
 	// Check if the filename exists
 	if exists, _ := file.Exists(o.filename); !exists {
-		return &clierrors.InvalidArgumentError{
+		return &cmd.InvalidArgumentError{
 			Val:     o.filename,
 			Context: "filename does not exist, or is not accessible",
 		}
@@ -95,7 +94,7 @@ func (o *rootOptions) Validate(_ context.Context, _ *jsonneticcli.Context) error
 	// Check if jpath directories exist
 	for _, jpath := range o.jpath {
 		if exists, _ := file.Exists(jpath); !exists {
-			return &clierrors.InvalidArgumentError{
+			return &cmd.InvalidArgumentError{
 				Flag:    "jpath",
 				Val:     jpath,
 				Context: "jpath does not exist, or is not accessible",
@@ -123,7 +122,7 @@ func (o *rootOptions) Run(_ context.Context, _ *jsonneticcli.Context) error {
 		output, err = vm.EvaluateFile(o.filename)
 	}
 	if err != nil {
-		return &clierrors.GeneralError{
+		return &cmd.GeneralError{
 			Message: "failed to evaluate jsonnet file",
 			Err:     err,
 		}
@@ -136,7 +135,7 @@ func (o *rootOptions) Run(_ context.Context, _ *jsonneticcli.Context) error {
 		err = utils.WriteOutputFile(output, o.outputFile, o.createDirs)
 	}
 	if err != nil {
-		return &clierrors.GeneralError{Err: err}
+		return &cmd.GeneralError{Err: err}
 	}
 
 	return nil
