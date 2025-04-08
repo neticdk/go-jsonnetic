@@ -6,8 +6,8 @@ import (
 
 	"github.com/google/go-jsonnet"
 	"github.com/google/go-jsonnet/ast"
-	"github.com/neticdk/go-common/pkg/file"
 	"github.com/neticdk/go-jsonnetic/internal/utils"
+	"github.com/neticdk/go-stdlib/file"
 	"github.com/prometheus/prometheus/promql/parser"
 )
 

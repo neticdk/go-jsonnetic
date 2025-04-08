@@ -6,10 +6,10 @@ import (
 	"strings"
 
 	"github.com/neticdk/go-common/pkg/cli/cmd"
-	"github.com/neticdk/go-common/pkg/file"
 	"github.com/neticdk/go-jsonnetic/internal/cmd/utils"
 	"github.com/neticdk/go-jsonnetic/internal/jsonneticcli"
 	"github.com/neticdk/go-jsonnetic/pkg/jsonnetic"
+	"github.com/neticdk/go-stdlib/file"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 )
