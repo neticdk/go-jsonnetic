@@ -1,7 +1,7 @@
 package utils
 
 import (
-	"github.com/neticdk/go-common/pkg/slice"
+	"github.com/neticdk/go-stdlib/xslices"
 	"github.com/prometheus/prometheus/promql/parser"
 )
 
@@ -23,7 +23,7 @@ func ExprNodeInspectorFunc(label string) func(node parser.Node, path []parser.No
 func prepareAggregationExpr(e *parser.AggregateExpr, label string) error {
 	if e.Without {
 		// If the label is present in the omission, we should remove it.
-		e.Grouping = slice.Filter[string](e.Grouping, func(s string) bool { return s != label })
+		e.Grouping = xslices.Filter[string](e.Grouping, func(s string) bool { return s != label })
 		return nil
 	}
 
