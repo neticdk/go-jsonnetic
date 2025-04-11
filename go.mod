@@ -5,7 +5,7 @@ go 1.24.1
 require (
 	github.com/google/go-jsonnet v0.20.0
 	github.com/neticdk/go-common v0.17.0
-	github.com/neticdk/go-stdlib v0.1.4
+	github.com/neticdk/go-stdlib v1.0.0
 	github.com/prometheus/prometheus v0.302.1
 	github.com/spf13/cobra v1.9.1
 	github.com/spf13/pflag v1.0.6
