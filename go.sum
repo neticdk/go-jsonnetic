@@ -189,6 +189,8 @@ github.com/neticdk/go-common v0.19.1 h1:Q605gs5WFoq6dqMoy0nH2pta8f4D6PeJPXCrJlM/
 github.com/neticdk/go-common v0.19.1/go.mod h1:RzhJtY20QRMcNLPYqJ2gC9vnQDYPmOCLa9bloPbuPKc=
 github.com/neticdk/go-common v0.19.4 h1:ahLm2FVpxv3nHjcHHuDl5UTPwmDGaQvo6uwjLbbKioM=
 github.com/neticdk/go-common v0.19.4/go.mod h1:UcTQs5PJuMIJpISBgpKIqgCpxedMLb/bPFC8F1mG0HE=
+github.com/neticdk/go-common v0.19.6 h1:EiPNuDLk4dD97KLhMcCAXow4dIus+2h3QCfwTezu+6k=
+github.com/neticdk/go-common v0.19.6/go.mod h1:LHrxZ5n2XCAHVi7dnJ4us2zR0Z5pO0K0pjrncGk/RDc=
 github.com/neticdk/go-stdlib v0.1.4 h1:1MrLzgI77tig92waSRIYbo4F6QxX/+SmuMG3covJ5yQ=
 github.com/neticdk/go-stdlib v0.1.4/go.mod h1:vQg+TbFoNu57o4gPe5xwLhT8dgNq9hFwsR9Oy5QsuIk=
 github.com/neticdk/go-stdlib v1.0.0 h1:9QCpoMpO5dBJGHJhumZrHzfJyvpVBd2Gc7ODJujfpXY=
