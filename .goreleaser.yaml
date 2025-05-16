@@ -77,3 +77,6 @@ brews:
       bash_completion.install "completions/jsonnetic.bash" => "jsonnetic"
       zsh_completion.install "completions/jsonnetic.zsh" => "_jsonnetic"
       fish_completion.install "completions/jsonnetic.fish"
+
+release:
+  prerelease: auto

@@ -11,7 +11,7 @@ permissions:
   packages: write
 
 jobs:
-  deliver:
-    name: Build and Test
+  release:
+    name: Release
     uses: neticdk/shared-github-actions/.github/workflows/go-cd.yaml@main
     secrets: inherit
