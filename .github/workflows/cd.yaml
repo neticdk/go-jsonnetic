@@ -7,30 +7,11 @@ on:
       - "v*"
 
 permissions:
-  packages: write
   contents: write
+  packages: write
 
 jobs:
   release:
-    name: Release go binary
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
-        with:
-            fetch-depth: 0 # Required for changelog to work properly
-
-      - name: Setup Go
-        uses: actions/setup-go@d35c59abb061a4a6fb18e82ac0862c26744d6ab5 # v5
-        with:
-          go-version-file: go.mod
-          cache: true
-
-      - name: Run GoReleaser
-        uses: goreleaser/goreleaser-action@9c156ee8a17a598857849441385a2041ef570552 # v6.3.0
-        with:
-          distribution: goreleaser
-          version: latest
-          args: release --clean
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    name: Release
+    uses: neticdk/shared-github-actions/.github/workflows/go-cd.yaml@main
+    secrets: inherit
