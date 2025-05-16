@@ -54,5 +54,26 @@ changelog:
       - "^Merge pull request"
       - "^Merge branch"
 
-release:
-  prerelease: auto
+brews:
+  - name: jsonnetic
+    custom_require: "../lib/private_strategy.rb"
+    directory: Formula
+    download_strategy: "GitHubPrivateRepositoryReleaseDownloadStrategy"
+    repository:
+      owner: neticdk
+      name: netic-homebrew-tap
+      token: "{{ .Env.HOMEBREW_TOKEN }}"
+    goarm: "7"
+    homepage: https://github.com/neticdk/go-jsonnetic
+    description: Jsonnetic
+    license:
+    test: |
+      system "#{bin}/jsonnetic version"
+    dependencies:
+      - name: go
+        type: optional
+    install: |-
+      bin.install "jsonnetic"
+      bash_completion.install "completions/jsonnetic.bash" => "jsonnetic"
+      zsh_completion.install "completions/jsonnetic.zsh" => "_jsonnetic"
+      fish_completion.install "completions/jsonnetic.fish"
