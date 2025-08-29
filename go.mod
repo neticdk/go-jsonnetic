@@ -2,7 +2,7 @@ module github.com/neticdk/go-jsonnetic
 
 go 1.24.4
 
-toolchain go1.24.5
+toolchain go1.25.0
 
 require (
 	github.com/google/go-jsonnet v0.21.0
@@ -11,7 +11,7 @@ require (
 	github.com/prometheus/prometheus v0.305.0
 	github.com/spf13/cobra v1.9.1
 	github.com/spf13/pflag v1.0.7
-	github.com/stretchr/testify v1.10.0
+	github.com/stretchr/testify v1.11.1
 )
 
 require (
