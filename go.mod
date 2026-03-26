@@ -3,7 +3,7 @@ module github.com/neticdk/go-jsonnetic
 go 1.26.1
 
 require (
-	github.com/google/go-jsonnet v0.21.0
+	github.com/google/go-jsonnet v0.22.0
 	github.com/neticdk/go-common v0.27.1
 	github.com/neticdk/go-stdlib v0.2.2
 	github.com/prometheus/prometheus v0.310.0
