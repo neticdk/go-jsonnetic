@@ -72,7 +72,8 @@ func promqlAggregateBy() *jsonnet.NativeFunction {
 		Name:   FuncPromqlAggregateBy,
 		Params: ast.Identifiers{"expr", "label"},
 		Func: func(args []any) (any, error) {
-			expr, err := parser.ParseExpr(args[0].(string))
+			p := parser.NewParser(parser.Options{})
+			expr, err := p.ParseExpr(args[0].(string))
 			if err != nil {
 				return "", err
 			}
