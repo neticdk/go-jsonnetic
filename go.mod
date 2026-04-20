@@ -4,7 +4,7 @@ go 1.26.2
 
 require (
 	github.com/google/go-jsonnet v0.22.0
-	github.com/neticdk/go-common v0.28.1
+	github.com/neticdk/go-common v0.28.2
 	github.com/neticdk/go-stdlib v1.0.1
 	github.com/prometheus/prometheus v0.311.2
 	github.com/spf13/cobra v1.10.2
@@ -43,7 +43,7 @@ require (
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
 	github.com/lithammer/fuzzysearch v1.1.8 // indirect
 	github.com/lucasb-eyer/go-colorful v1.3.0 // indirect
-	github.com/mattn/go-isatty v0.0.20 // indirect
+	github.com/mattn/go-isatty v0.0.21 // indirect
 	github.com/mattn/go-runewidth v0.0.20 // indirect
 	github.com/microcosm-cc/bluemonday v1.0.27 // indirect
 	github.com/mitchellh/go-wordwrap v1.0.1 // indirect
