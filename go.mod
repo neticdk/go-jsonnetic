@@ -6,7 +6,7 @@ require (
 	github.com/google/go-jsonnet v0.22.0
 	github.com/neticdk/go-common v0.28.2
 	github.com/neticdk/go-stdlib v1.0.1
-	github.com/prometheus/prometheus v0.311.2
+	github.com/prometheus/prometheus v0.311.3
 	github.com/spf13/cobra v1.10.2
 	github.com/spf13/pflag v1.0.10
 	github.com/stretchr/testify v1.11.1
