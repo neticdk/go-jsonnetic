@@ -22,7 +22,7 @@ permissions:
 jobs:
   test:
     name: Build and Test
-    uses: neticdk/shared-github-actions/.github/workflows/go-ci.yaml@v0.4.2
+    uses: neticdk/shared-github-actions/.github/workflows/go-ci.yaml@6b06079b6d743217648e9829e34db83489a9954c # v0.4.4
     with:
       run-benchmarks: true
       run-release-test: true
