@@ -13,5 +13,5 @@ permissions:
 jobs:
   release:
     name: Release
-    uses: neticdk/shared-github-actions/.github/workflows/go-cd.yaml@main
+    uses: neticdk/shared-github-actions/.github/workflows/go-cd.yaml@7f40f2ee42ef4da483be96d6154bbb27d9ab0264 # main
     secrets: inherit
