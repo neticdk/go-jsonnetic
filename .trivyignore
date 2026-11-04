@@ -1,0 +1,4 @@
+# x/crypto/openpgp is unsafe by design, and the fix is in an untagged commit.
+# Nothing in this module imports openpgp, and govulncheck reports it as unreachable.
+# Remove this entry once x/crypto tags a release after v0.58.0.
+GO-2026-5932 exp:2027-01-31

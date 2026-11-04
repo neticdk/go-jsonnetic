@@ -72,7 +72,7 @@ completions() {
     rm -rf completions
     mkdir completions
     for sh in bash zsh fish; do
-        go run . completion "$sh" >"completions/solas.$sh"
+        go run . completion "$sh" >"completions/jsonnetic.$sh"
     done
 }
 
