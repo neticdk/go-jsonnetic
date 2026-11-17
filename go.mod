@@ -1,6 +1,6 @@
 module github.com/neticdk/go-jsonnetic
 
-go 1.26.10
+go 1.26.11
 
 require (
 	github.com/google/go-jsonnet v0.22.0
